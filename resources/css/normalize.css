@@ -1,0 +1,98 @@
+/* ==========================================================================
+   1. CSS Variables
+   - Look in your Figma file for your project's colors and fonts.
+   - Define them here for easy use throughout your project.
+   ========================================================================== */
+
+:root {
+  /* --- Colors --- */
+  /* Example: Replace with your actual colors from Figma */
+  --color-primary: #1f2937;    /* Dark text color */
+  --color-secondary: #6b7280;  /* Lighter, secondary text */
+  --color-accent: #3b82f6;     /* Buttons, links, highlights */
+  --color-background: #ffffff; /* Page background */
+  --color-border: #e5e7eb;     /* Borders and dividers */
+
+  /* --- Typography --- */
+  /* Example: Find the main font family in Figma */
+  --font-family-sans: 'Inter', sans-serif; /* Replace 'Inter' with your font */
+  --font-family-serif: 'Lora', serif; /* If you use a second font */
+
+  /* --- Spacing --- */
+  --spacing-1: 0.25rem; /* 4px */
+  --spacing-2: 0.5rem;  /* 8px */
+  --spacing-4: 1rem;    /* 16px */
+  --spacing-8: 2rem;    /* 32px */
+}
+
+/* ==========================================================================
+   2. Modern CSS Reset
+   - A modern, lightweight reset for a clean slate.
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family-sans); /* Uses the font from your variables */
+  background-color: var(--color-background); /* Uses the background from your variables */
+  color: var(--color-primary); /* Uses the text color from your variables */
+  line-height: 1.6;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote,
+dl,
+dd,
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
