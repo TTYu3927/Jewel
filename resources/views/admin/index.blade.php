@@ -3,17 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>@yield('title', 'Shwe Luck San')</title>
-    <link rel="icon" href="images/image.png" type="image/x-icon">
+    <link rel="icon" href="images/title.png" type="image">
 
     <link href="{{ asset('css/normalize.css') }}" rel="stylesheet"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-<button id="admin-hamburger" class="admin-hamburger" aria-label="Toggle sidebar">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
+<button class="hamburger" id="hamburgerBtn">
+    <i class="fas fa-bars"></i>
+</button>
 
     <aside class="admin-sidebar">
     <div class="logo">
@@ -35,7 +33,7 @@
             </li>
             <li>
                 <img src="/images/image 3.png" width="24" height="24" alt="product">
-                <a href="#">Orders (10)</a>
+                <a href="#">Orders</a>
             </li>
             <hr style="width: 20%; background-color: #374151;">
             <li>
@@ -44,7 +42,7 @@
             </li>
             <li>
                 <img src="/images/image 5.png" width="24" height="24" alt="settings">
-                <a href="#">Categories</a>
+                <a href="{{ route('category.index') }}">Categories</a>
             </li>
             <li>
                 <img src="/images/image 6.png" width="24" height="24" alt="transaction">
@@ -61,27 +59,35 @@
                 <li><img src="/images/image 7.png" width="24" height="24" alt="logo">Logout</li>
             </ul>
         </div>
+        <div class="admin-content">
         @yield('content')
+        </div>
 
-    @stack('scripts')
     </main>
 
 </body>
 </html>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const avatar = document.getElementById('adminAvatar');
-            const dropdown = document.getElementById('adminDropdown');
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const avatar = document.getElementById('adminAvatar');
+        const dropdown = document.getElementById('adminDropdown');
+        const sidebar = document.querySelector('.admin-sidebar');
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
 
-            avatar.addEventListener('click', function (e) {
-                e.stopPropagation();
-                dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
-            });
-
-            document.addEventListener('click', function (e) {
-                if (!dropdown.contains(e.target) && e.target !== avatar) {
-                    dropdown.style.display = 'none';
-                }
-            });
+        avatar.addEventListener('click', function (e) {
+            e.stopPropagation();
+            dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
         });
-    </script>
+
+        document.addEventListener('click', function (e) {
+            if (!dropdown.contains(e.target) && e.target !== avatar) {
+                dropdown.style.display = 'none';
+            }
+        });
+
+        // Hamburger toggle
+        hamburgerBtn.addEventListener('click', function () {
+            sidebar.classList.toggle('active');
+        });
+    });
+</script>
