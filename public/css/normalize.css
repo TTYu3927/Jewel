@@ -220,7 +220,6 @@ body {
   cursor: pointer;
 }
 
-/* Mobile adjustments */
 @media (max-width: 768px) {
   .admin-sidebar {
       position: fixed;

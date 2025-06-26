@@ -226,7 +226,10 @@
         <span class="modal-close" onclick="closeModal()">&times;</span>
         <h2>CREATE NEW CATEGORY</h2>
 
-        <form action="{{ route('category.create') }}" method="POST">
+
+
+
+        <form action="{{ route('category.store') }}" method="POST">
             @csrf
 
             <label for="name">Category Name:</label>
