@@ -15,7 +15,7 @@ class CategoryController extends Controller
     if ($request->filled('search')) {
         $query->where('name', 'like', '%' . $request->search . '%');
     }
-        $categories = Category::paginate(3);
+        $categories = Category::paginate(2);
 
         return view('category.index', compact('categories'));
     }
@@ -42,8 +42,7 @@ class CategoryController extends Controller
     // Show the edit form
     public function edit(Category $category)
     {
-        return view('category.edit', compact('category'));
-    }
+        return view('category.index', compact('category'));    }
 
     // Update the category
     public function update(Request $request, Category $category)

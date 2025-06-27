@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>@yield('title', 'Shwe Luck San')</title>
-    <link rel="icon" href="images/title.png" type="image">
+    <link rel="icon" href="images/logoo.png" type="image">
 
     <link href="{{ asset('css/normalize.css') }}" rel="stylesheet"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -15,7 +15,7 @@
 
     <aside class="admin-sidebar">
     <div class="logo">
-        <img src="/images/image.png" width="55" height="60" alt="logo">
+        <img src="/images/side.png" width="55" height="60" alt="logo">
         <div class="nav-name">
             <h1>SHWE LUCK SAN</h1>
             <p>Gold & Jewelry</p>
@@ -85,7 +85,6 @@
             }
         });
 
-        // Hamburger toggle
         hamburgerBtn.addEventListener('click', function () {
             sidebar.classList.toggle('active');
         });
