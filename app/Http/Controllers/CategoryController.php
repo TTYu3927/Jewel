@@ -45,24 +45,25 @@ class CategoryController extends Controller
         return view('category.index', compact('category'));    }
 
     // Update the category
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|string|max:255'
+            'name' => 'required|string|max:255',
         ]);
-
-        $category->update([
-            'name' => $request->name,
-        ]);
-
-        return redirect()->route('category.index')->with('success', 'Category updated successfully.');
+    
+        $category = Category::findOrFail($id);
+        $category->name = $request->name;
+        $category->save();
+    
+        return redirect()->back()->with('success', 'Category updated successfully!');
     }
-
+    
     // Delete a category
-    public function destroy(Category $category)
+    public function destroy($id)
     {
+        $category = Category::findOrFail($id);
         $category->delete();
 
         return redirect()->route('category.index')->with('success', 'Category deleted successfully.');
     }
-}
+    }

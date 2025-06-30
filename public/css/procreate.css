@@ -1,0 +1,98 @@
+form {
+    display: flex;
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #181818;
+    gap: 95px;
+    
+}
+.formleft,
+.formright {
+    flex: 1;
+    padding: 20px;
+    background-color: #181818;
+    border-radius: 5px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #dfdeda;
+}
+
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #7C7C7C;
+    border-radius: 4px;
+    background-color: transparent;
+    color: #dfdeda;
+    font-size: 14px;
+}
+
+button {
+    background-color: #541c1c;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 11px;
+}
+
+button:hover {
+    background-color:#6a2525;
+}
+.cxnl a {
+    color: #dfdeda;
+    text-decoration: none; 
+}
+.cxnl{
+    background-color: #7C7C7C;
+    font-size: 11px;
+}
+.img {
+    object-fit: cover;
+    border-radius: 5px;
+}
+.img + label {
+    display: block;
+    cursor: pointer;
+    color: #dfdeda;
+    background-color: #541c1c;
+    padding: 7px;
+    font-size: 12px;
+    width: calc(100% - 60%);
+    margin-top: 10px;
+    text-align: center;
+}
+.room{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    margin-bottom: 20px;
+    color: #7C7C7C;
+    margin-right: 30px;
+}
+h2{
+    font-size: 16px;
+    margin-top: 10px;  
+}
+.room a {
+    color: #7C7C7C;
+    text-decoration: none;
+}
+.room i {
+    color: #7C7C7C;
+    font-size: 16px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+}

@@ -25,7 +25,7 @@
         <ul>
             <li>
                 <img src="/images/image 2.png" width="24" height="24" alt="logo">
-                <a href="{{ route('admin.index') }}">Dashboard</a>
+                <a href="{{ route('admin.index') }}" class="{{ request()->routeIs('admin.index') ? 'active' : '' }}">Dashboard</a>
             </li>
             <li>
                 <img src="/images/image 1.png" width="24" height="24" alt="user">
@@ -38,11 +38,11 @@
             <hr style="width: 20%; background-color: #374151;">
             <li>
                 <img src="/images/image 4.png" width="24" height="24" alt="transaction">
-                <a href="#">Products</a>
+                <a href="{{ route('products.index') }}" class="{{ request()->routeIs('products.*') ? 'active' : '' }}">Products</a>
             </li>
             <li>
                 <img src="/images/image 5.png" width="24" height="24" alt="settings">
-                <a href="{{ route('category.index') }}">Categories</a>
+                <a href="{{ route('category.index') }}" class="{{ request()->routeIs('category.*') ? 'active' : '' }}">Categories</a>
             </li>
             <li>
                 <img src="/images/image 6.png" width="24" height="24" alt="transaction">

@@ -150,14 +150,19 @@ body {
   border-radius: 4px;
 }
 
-.admin-sidebar nav ul li:nth-child(1) {
-  border-left: 5px solid #D4AF37;
-  padding-left: 15px;
-}
 
 .admin-sidebar nav ul li a {
   text-decoration: none;
   color: #F8F6F2;
+}
+.admin-sidebar a.active {
+  color: #D4AF37;
+  font-weight: bold;
+}
+.admin-sidebar li a.active::before {
+  content: "";
+  margin-right: 5px;
+  color: #D4AF37;
 }
 
 
