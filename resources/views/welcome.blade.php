@@ -27,7 +27,6 @@
         <ul>
             <li>
                 <img src="/images/image 2.png" width="24" height="24" alt="logo">
-                <a href="{{ route('admin.index') }}">Dashboard</a>
             </li>
             <li>
                 <img src="/images/image 1.png" width="24" height="24" alt="user">

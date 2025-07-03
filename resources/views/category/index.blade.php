@@ -1,4 +1,4 @@
-@extends('admin.index')
+@extends('layouts.index')
 @section('title', 'Categories')
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/category.css') }}">

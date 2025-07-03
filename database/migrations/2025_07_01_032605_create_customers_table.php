@@ -12,14 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('customers', function (Blueprint $table) {
-        $table->id(); // Auto-incrementing ID
-        $table->string('customer_name');
-        $table->integer('order_quantity')->default(0);
-        $table->decimal('purchased_amount', 10, 2)->default(0.00);
-        $table->enum('status', ['active', 'inactive'])->default('active');
-        $table->timestamp('last_login')->nullable();
-        $table->timestamps();
-
+            $table->id();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('phone')->nullable();
+            $table->string('date_of_birth')->nullable();
+            $table->string('address')->nullable();
+            $table->string('password');
+            $table->timestamps();
         });
     }
 

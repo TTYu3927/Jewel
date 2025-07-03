@@ -1,4 +1,4 @@
-@extends('admin.index')
+@extends('layouts.index')
 @section('title', 'Create Product')
 @section('content')
 

@@ -25,11 +25,11 @@
         <ul>
             <li>
                 <img src="/images/image 2.png" width="24" height="24" alt="logo">
-                <a href="{{ route('admin.index') }}" class="{{ request()->routeIs('admin.index') ? 'active' : '' }}">Dashboard</a>
+                <a href="{{ route('layouts.ctmindex') }}" class="{{ request()->routeIs('layouts.ctmindex') ? 'active' : '' }}">Dashboard</a>
             </li>
             <li>
                 <img src="/images/image 1.png" width="24" height="24" alt="user">
-                <a href="#">Customers</a>
+                <a href="{{ route('customers.index') }}">Customers</a>
             </li>
             <li>
                 <img src="/images/image 3.png" width="24" height="24" alt="product">
