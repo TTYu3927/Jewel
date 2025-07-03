@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -33,3 +34,10 @@ Route::get('/customers', [CustomerController::class, 'index'])->name('customers.
 Route::get('/customers/create', [CustomerController::class, 'create'])->name('customers.register');
 Route::post('/customers', [CustomerController::class, 'store'])->name('customers.store');
 Route::get('/customers/{customer}', [CustomerController::class, 'show'])->name('customers.show');
+
+Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register.form');
+Route::post('/register', [AuthController::class, 'register'])->name('register');
+
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login.form');
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

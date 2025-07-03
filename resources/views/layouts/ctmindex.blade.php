@@ -34,7 +34,7 @@
       </div>
     </div>
     <div class="icons">
-    <a href="{{ route('customers.register') }}"><i class="fa-regular fa-user"></i></a>
+    <a href="{{ route('register.form') }}"><i class="fa-regular fa-user"></i></a>
     <i class="fa-solid fa-magnifying-glass"></i>
       <i class="fa-solid fa-bag-shopping"></i>
     </div>
@@ -94,7 +94,7 @@
     <div class="icon">
   <i class="fa-brands fa-facebook-f fa-xl" style="color: #fcfcfd;"></i>
     </div>
-    <i class="fa-brands fa-square-instagram fa-2xl" style="color: fuchsia; "></i>
+    <i class="fa-brands fa-square-instagram fa-2xl" style="color: #e74d4d; "></i>
     <i class="fa-brands fa-tiktok fa-2xl"></i>
     </div>
 
