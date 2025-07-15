@@ -3,8 +3,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -20,14 +21,17 @@ class AuthController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
+            'email' => 'required|email|unique:customers,email',
             'password' => 'required|min:6|confirmed',
+            'phone' => 'required|string|max:15',
+            'date_of_birth' => 'date',
+            'address' => 'required|string|max:255'
         ]);
 
         $validated['password'] = Hash::make($validated['password']);
 
-        User::create($validated);
-
+        Customer::create($validated);
+        
         return redirect()->route('login.form')->with('success', 'Registration successful! Please login.');
     }
 
@@ -38,25 +42,35 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->validate([
+        $request->validate([
             'email' => 'required|email',
-            'password' => 'required'
+            'password' => 'required|string',
         ]);
-
-        if (auth()->attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->intended(route('customers.index'))->with('success', 'Logged in successfully.');
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            if ($user->usertype == 'admin') {
+                return redirect()->intended(route('admin.index'))->with('success', 'Welcome Admin');
+            } elseif ($user->usertype == 'customer') {
+                return redirect()->intended(route('customers.index'))->with('success', 'Welcome User');
+            } else {
+                return redirect()->back()->with('error', 'Unauthorized user type');
             }
+        } else {
+            return redirect()->back()->with('error', 'Invalid credentials');
+        }            
 
-        return back()->withErrors([
-            'email' => 'Invalid credentials.',
-        ])->onlyInput('email');
+
+            
+
+
     }
 
     // Handle logout
     public function logout(Request $request)
     {
-        auth()->logout();
+        auth('customer')->logout();
+        auth('admin')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 

@@ -93,6 +93,7 @@
     <input type="password" name="password" placeholder="Password" required>
 
     <button type="submit">LOGIN</button>
+    <a href="{{ route('logout') }}">Logout</a>
 
     <p class="login-link">Don't have an account? <a href="{{ route('register.form') }}">Signup</a></p>
   </form>

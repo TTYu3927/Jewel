@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Customer;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Product;
 
 use Illuminate\Http\Request;
 
@@ -13,7 +14,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        return view('customers.index');
+        $latestProducts = Product::latest()->take(4)->get();
+        return view('customers.index', compact('latestProducts'));    
     }
 
     /**
@@ -29,13 +31,12 @@ class CustomerController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {   $date_of_birth = $request->dob_year . '-' . $request->dob_month . '-' . $request->dob_day;
-        $request->merge(['date_of_birth' => $date_of_birth]);
+    {   
         $validated = $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:customers',
-            'phone' => 'required',
-            'date_of_birth' => 'required|date',
+            'email' => 'required|email|unique:customers,email',
+            'phone' => 'nullable|string|max:15',
+            'date_of_birth' => 'date',
             'address' => 'required',
             'password' => 'required|min:6|confirmed'
         ]);
@@ -47,6 +48,10 @@ class CustomerController extends Controller
         Customer::create($validated);
 
         return redirect()->route('customers.index')->with('success', 'Customer added successfully');
+    }
+    public function contact()
+    {
+        return view('customers.contact');
     }
 
     public function show(Customer $customer)

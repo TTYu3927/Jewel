@@ -16,6 +16,7 @@
             @endforeach
         </select>
     </div>
+    
     <form class="admin-search-bar" action="#" method="get">
         <input type="text" placeholder="Search" name="search"><i class="fas fa-search" style="color: #D4AF37;"></i>
     </form>

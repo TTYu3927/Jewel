@@ -8,6 +8,7 @@
     <link href="{{ asset('css/normalize.css') }}" rel="stylesheet"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
 <button class="hamburger" id="hamburgerBtn">
     <i class="fas fa-bars"></i>
@@ -25,11 +26,11 @@
         <ul>
             <li>
                 <img src="/images/image 2.png" width="24" height="24" alt="logo">
-                <a href="{{ route('layouts.ctmindex') }}" class="{{ request()->routeIs('layouts.ctmindex') ? 'active' : '' }}">Dashboard</a>
+                <a href="{{ route('admin.index') }}" class="{{ request()->routeIs('admin.index') ? 'active' : '' }}">Dashboard</a>
             </li>
             <li>
                 <img src="/images/image 1.png" width="24" height="24" alt="user">
-                <a href="{{ route('customers.index') }}">Customers</a>
+                <a href="#">Customers</a>
             </li>
             <li>
                 <img src="/images/image 3.png" width="24" height="24" alt="product">
@@ -56,7 +57,7 @@
             <img src="/images/user.png" alt="admin" width="50" height="50" id="adminAvatar">
             <ul class="admin-dropdown" id="adminDropdown">
                 <li><img src="/images/image 8.png" width="24" height="24" alt="logo">Edit Profile</li>
-                <li><img src="/images/image 7.png" width="24" height="24" alt="logo">Logout</li>
+                <a href="{{ route('logout') }}"><li><img src="/images/image 7.png" width="24" height="24" alt="logo">Logout</li></a>
             </ul>
         </div>
         <div class="admin-content">

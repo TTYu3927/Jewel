@@ -1,6 +1,7 @@
 @extends('layouts.ctmindex')
 @section('content')
 
+
 <style>
   .signup-container {
     max-width: 400px;
@@ -87,14 +88,14 @@
 <div class="signup-container">
   <h2>SIGN UP</h2>
   <p>Please fill in the informations below:</p>
-  <form action="{{ route('register.form') }}" class="signup-form" method="POST" >
+  <form action="{{ route('customers.store') }}" class="signup-form" method="POST" >
     @csrf
     <input type="text" name="name" placeholder="Name" required>
     <input type="email" name="email" placeholder="Email" required>
     <input type="text" name="phone" placeholder="Phone" required>
 
     <div class="dob">
-      <select name="dob_month" required>
+      <select name="dob_month">
         <option value="">Month</option>
         <option value="01">January</option>
         <option value="02">February</option>
@@ -109,13 +110,13 @@
         <option value="11">November</option>
         <option value="12">December</option>
       </select>
-      <select name="dob_day" required>
+      <select name="dob_day">
         <option value="">Day</option>
         @for ($day = 1; $day <= 31; $day++)
           <option value="{{ str_pad($day, 2, '0', STR_PAD_LEFT) }}">{{ $day }}</option>
         @endfor
       </select>
-      <select name="dob_year" required>
+      <select name="dob_year">
         <option value="">Year</option>
         @for ($year = date('Y'); $year >= 1900; $year--)
           <option value="{{ $year }}">{{ $year }}</option>

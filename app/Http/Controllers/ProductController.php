@@ -94,6 +94,26 @@ class ProductController extends Controller
         return redirect()->route('products.index')->with('success', 'Product updated successfully.');
     }
 
+    public function show($id)
+    {
+        $product = Product::findOrFail($id);
+
+        $related = Product::where('id', '!=', $product->id)
+                      ->latest()
+                      ->take(4)
+                      ->get();
+
+        return view('customers.detail', compact('product', 'related'));
+    }
+        
+    public function shop()
+    {
+        $products = Product::latest()->get();
+        return view('customers.shop', compact('products'));
+    }
+    
+
+
     /**
      * Remove the specified resource from storage.
      */

@@ -225,15 +225,9 @@ body {
   cursor: pointer;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 400px) {
   .admin-sidebar {
-      position: fixed;
-      left: -100%;
-      top: 0;
-      width: 250px;
-      height: 100%;
-      transition: left 0.3s ease;
-      z-index: 1000;
+      width: 80px;
   }
   .admin-sidebar.active {
       left: 0;

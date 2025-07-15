@@ -34,20 +34,25 @@
       </div>
     </div>
     <div class="icons">
+      @auth
+      <a href="{{ route('login.form') }}">
+       <img src="{{ asset('images/cover2.jpg') }}" width="30" height="30" alt="user">
+       </a>
+       @else
     <a href="{{ route('register.form') }}"><i class="fa-regular fa-user"></i></a>
+    @endauth
+
     <i class="fa-solid fa-magnifying-glass"></i>
-      <i class="fa-solid fa-bag-shopping"></i>
+    <a href="{{ route('cart.index') }}"><i class="fa-solid fa-bag-shopping"></i></a>
     </div>
   </header>
 
   <nav class="navbar">
     <a href="#">GIFT GUIDE</a>
-    <a href="#">SHOP BY COLLECTION</a>
-    <a href="#">EARRINGS</a>
-    <a href="#">NECKLACES</a>
-    <a href="#">BRACELETS</a>
-    <a href="#">RINGS</a>
-    <a href="#">CONTACT US</a>
+    <a href="{{ route('customers.shop') }}">SHOP BY COLLECTION</a>
+    <a href="#">CATEGORIES</a>
+    <a href="#">ABOUT US</a>
+    <a href="{{ route('contact') }}">CONTACT US</a>
   </nav>
 </div>
   @yield('content')

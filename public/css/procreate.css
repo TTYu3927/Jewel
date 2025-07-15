@@ -96,3 +96,23 @@ h2{
     margin-top: 10px;
     margin-left: 10px;
 }
+
+
+@media screen and (max-width: 768px) {
+    form {
+        flex-direction: column;
+        padding: 10px;
+    }
+    .formleft, .formright {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .formright {
+        margin-left: 0;
+    }
+    .room {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+}
