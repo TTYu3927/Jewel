@@ -109,6 +109,7 @@ class ProductController extends Controller
     public function shop()
     {
         $products = Product::latest()->get();
+        
         return view('customers.shop', compact('products'));
     }
     

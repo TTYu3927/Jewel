@@ -34,7 +34,6 @@
 
     </div>
 </div>
-
 <h3>Discover More</h3>
 <div class="product-grid">
     @foreach($related as $item)

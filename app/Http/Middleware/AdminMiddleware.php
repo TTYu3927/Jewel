@@ -9,12 +9,10 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AdminMiddleware
 {
-    public function handle(Request $request, Closure $next): Response
-    {   
-        if(Auth::user()->usertype == 'admin'){
+    public function handle($request, Closure $next)
+    {
+        if (auth()->check() && auth()->user()->usertype === 'admin') {
             return $next($request);
         }
-        abort(401);
-
-    }
-}
+        return redirect()->route('admin.login.form')->with('error', 'Unauthorized access.');
+    }}

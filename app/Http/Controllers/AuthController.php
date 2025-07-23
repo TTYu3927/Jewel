@@ -35,45 +35,87 @@ class AuthController extends Controller
         return redirect()->route('login.form')->with('success', 'Registration successful! Please login.');
     }
 
-    public function showLoginForm()
-    {
-        return view('auth.login');
-    }
+        // Show admin login form
+        public function showAdminLoginForm()
+        {
+            return view('adminlogin');
+        }
 
-    public function login(Request $request)
-    {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|string',
-        ]);
-        $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials)) {
-            $user = Auth::user();
-            if ($user->usertype == 'admin') {
-                return redirect()->intended(route('admin.index'))->with('success', 'Welcome Admin');
-            } elseif ($user->usertype == 'customer') {
-                return redirect()->intended(route('customers.index'))->with('success', 'Welcome User');
-            } else {
-                return redirect()->back()->with('error', 'Unauthorized user type');
+        // Admin login
+        public function adminLogin(Request $request)
+        {
+            $request->validate([
+                'email' => 'required|email',
+                'password' => 'required',
+            ]);
+        
+            $credentials = $request->only('email', 'password');
+        
+            if (Auth::attempt($credentials)) {
+                $user = Auth::user();
+        
+                if ($user->usertype === 'admin') {
+                    return redirect()->intended(route('admin.dashboard'))->with('success', 'Welcome Admin');
+                }
+        
+                Auth::logout(); // not admin, force logout
+                return redirect()->back()->with('error', 'Not an admin user.');
             }
-        } else {
+        
             return redirect()->back()->with('error', 'Invalid credentials');
-        }            
+        }
+        
+        // Show customer login form
+        public function showLoginForm()
+        {
+            return view('auth.login');
+        }
 
-
-            
-
-
-    }
-
+        // Customer login
+        public function customerLogin(Request $request)
+        {
+            $request->validate([
+                'email' => 'required|email',
+                'password' => 'required',
+            ]);
+        
+            $credentials = $request->only('email', 'password');
+        
+            if (Auth::attempt($credentials)) {
+                $user = Auth::user();
+        
+                if ($user->usertype === 'customer') {
+                    return redirect()->intended(route('customers.index'))->with('success', 'Welcome');
+                }
+        
+                Auth::logout();
+                return redirect()->back()->with('error', 'Not a customer user.');
+            }
+        
+            return redirect()->back()->with('error', 'Invalid credentials');
+        }
+        
     // Handle logout
-    public function logout(Request $request)
-    {
-        auth('customer')->logout();
-        auth('admin')->logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+// Customer logout
+public function customerLogout(Request $request)
+{
+    Auth::logout(); // This logs out the current user (customer)
 
-        return redirect()->route('login.form')->with('success', 'Logged out successfully.');
-    }
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+
+    return redirect()->route('login.form')->with('success', 'Logged out successfully.');
+}
+
+// Admin logout
+public function adminLogout(Request $request)
+{
+    Auth::logout(); // Same logout, but redirect to admin login
+
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+
+    return redirect()->route('admin.login.form')->with('success', 'Logged out successfully.');
+}
+    
 }

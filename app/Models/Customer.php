@@ -25,4 +25,9 @@ class Customer extends Authenticatable
         'admin' => \App\Http\Middleware\AdminMiddleware::class,
     ];
     
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+    
 }

@@ -32,7 +32,6 @@ a.btn-add {
 .category-table {
     width: 100%;
     border-collapse: collapse;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
 }
 
 .category-table th {

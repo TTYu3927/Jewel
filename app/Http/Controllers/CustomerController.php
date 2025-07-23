@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Product;
+use App\Models\Order;
 
 use Illuminate\Http\Request;
 
@@ -59,7 +60,17 @@ class CustomerController extends Controller
         return view('customers.show', compact('customer'));
 
     }
+    public function customerList()
+{
+    $customers = Customer::all(); 
+    return view('admin.customerlist', compact('customers'));
+}
 
+    public function orderList()
+    {
+        $orders = Order::all(); // Assuming you have an Order model
+        return view('admin.orderlist', compact('orders'));
+    }
     public function edit(Customer $customer)
     {
         //

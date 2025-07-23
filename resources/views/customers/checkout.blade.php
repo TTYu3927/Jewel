@@ -141,7 +141,15 @@
         @foreach ($cart as $item)
             <div class="product-row">
                 <div class="product-info">
-                    <img class="product-img" src="{{ asset('storage/' . $item['image']) }}" alt="Product Image">
+@php
+
+    $defaultImage = asset('images/giftcard.jpg');
+    $imagePath = isset($item['image']) && Storage::disk('public')->exists($item['image'])
+        ? asset('storage/' . $item['image'])
+        : $defaultImage;
+@endphp
+
+<img class="product-img" src="{{ $imagePath }}" alt="Product Image">
                     <div>
                         <div>{{ $item['product_name'] }}</div>
                         <p>{{ number_format($item['price']) }} MMK</p>

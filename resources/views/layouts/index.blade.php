@@ -26,15 +26,15 @@
         <ul>
             <li>
                 <img src="/images/image 2.png" width="24" height="24" alt="logo">
-                <a href="{{ route('admin.index') }}" class="{{ request()->routeIs('admin.index') ? 'active' : '' }}">Dashboard</a>
+                <a href="{{ route('dashboardchart') }}" class="{{ request()->routeIs('admin.index') ? 'active' : '' }}">Dashboard</a>
             </li>
             <li>
                 <img src="/images/image 1.png" width="24" height="24" alt="user">
-                <a href="#">Customers</a>
+                <a href="{{ route('admin.customers') }}" class="{{ request()->routeIs('admin.customers') ? 'active' : '' }}">Customers</a>
             </li>
             <li>
                 <img src="/images/image 3.png" width="24" height="24" alt="product">
-                <a href="#">Orders</a>
+                <a href="{{ route('admin.order') }}" class="{{ request()->routeIs('admin.order') ? 'active' : '' }}">Orders</a>
             </li>
             <hr style="width: 20%; background-color: #374151;">
             <li>
@@ -47,7 +47,7 @@
             </li>
             <li>
                 <img src="/images/image 6.png" width="24" height="24" alt="transaction">
-                <a href="#">Employees</a>
+                <a href="{{ route('employees.index') }}" class="{{ request()->routeIs('employees.*') ? 'active' : '' }}">Employees</a>
             </li>
         </ul>
         </nav>
@@ -57,7 +57,7 @@
             <img src="/images/user.png" alt="admin" width="50" height="50" id="adminAvatar">
             <ul class="admin-dropdown" id="adminDropdown">
                 <li><img src="/images/image 8.png" width="24" height="24" alt="logo">Edit Profile</li>
-                <a href="{{ route('logout') }}"><li><img src="/images/image 7.png" width="24" height="24" alt="logo">Logout</li></a>
+                <a href="{{ route('admin.logout') }}"><li><img src="/images/image 7.png" width="24" height="24" alt="logo">Logout</li></a>
             </ul>
         </div>
         <div class="admin-content">
@@ -65,6 +65,9 @@
         </div>
 
     </main>
+    
+
+
 
 </body>
 </html>

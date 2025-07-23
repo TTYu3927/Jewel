@@ -113,7 +113,7 @@
 
             <div class="form">
                 <h2>LOGIN</h2>
-                <form action="{{route('login')  }}" method="POST">
+                <form action="{{route('adminlogin')  }}" method="POST">
                     @csrf
                     <label for="email">Email:</label>
                     <input type="email" name="email" id="email" required placeholder="Enter your email">

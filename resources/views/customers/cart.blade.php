@@ -185,7 +185,19 @@
                     <tr>
                         <td>
                             <div class="cart-product">
-                                <img src="{{ asset('storage/' . $item['image']) }}" alt="{{ $item['product_name'] }}">
+@php
+    // Assume image is stored in 'products/' inside 'storage/app/public'
+    $imageExists = isset($item['image']) && Storage::disk('public')->exists('products/' . $item['image']);
+    $imagePath = $imageExists
+        ? asset('images/giftcard.jpg')
+        : asset('storage/' . $item['image']); // fallback
+@endphp
+
+
+
+<img src="{{ $imagePath }}" alt="{{ $item['product_name'] }}">
+<!-- <pre>{{ print_r($item, true) }}</pre> -->
+
                                 <div>
                                     <div class="product-name">{{ $item['product_name'] }}</div>
                                     <div class="product-price">{{ number_format($item['price']) }} MMK</div>
