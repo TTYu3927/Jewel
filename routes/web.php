@@ -14,18 +14,16 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\VisitorController;
 use Illuminate\Support\Facades\Route;
 
-/** Admin login*/
 Route::get('/admin/login', [AuthController::class, 'showAdminLoginForm'])->name('admin.login.form');
 Route::post('/admin/login', [AuthController::class, 'adminLogin'])->name('adminlogin');
 Route::get('/admin/logout', [AuthController::class, 'adminLogout'])->name('admin.logout');
 
-/** Admin panel routes */
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/admin/dashboard-chart', function () {
+    Route::get('/admin/dashboard', function () {
         return view('admin.dashboard');
 })->name('dashboardchart');
 
-Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('dashboardchart');
 
     Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
     Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
@@ -60,7 +58,7 @@ Route::prefix('admin')->group(function () {
     Route::post('/reset-password', [AdminForgotPasswordController::class, 'reset'])->name('admin.password.update');
 });
 
-/** Public shop & customer routes*/
+
 Route::get('/', [CustomerController::class, 'index'])->name('customers.index');
 Route::get('/customers/create', [CustomerController::class, 'create'])->name('customers.register');
 Route::post('/customers', [CustomerController::class, 'store'])->name('customers.store');
@@ -73,14 +71,14 @@ Route::get('/shop', [ProductController::class, 'shop'])->name('customers.shop');
 Route::post('/checkout/confirm', [CartController::class, 'confirmOrder'])->name('checkout.confirm');
 
 
-/** Auth Routes (Customer)*/
+
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register.form');
 Route::post('/register', [AuthController::class, 'register']);
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login.form');
 Route::post('/login', [AuthController::class, 'customerLogin'])->name('login');
 Route::get('/logout', [AuthController::class, 'customerlogout'])->name('logout');
 
-/** Cart Routes*/
+
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/add/{id}', [CartController::class, 'addToCart'])->name('cart.add');
 Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
@@ -88,8 +86,7 @@ Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.
 Route::get('/cart/checkout', [CartController::class, 'checkout'])->name('checkout');
 Route::get('/payment', [CartController::class, 'payment'])->name('customers.payment');
 
-/**
- * Public Product Routes for Customers*/
+
 Route::get('/products', [ProductController::class, 'index'])->name('products.index'); // Customer product listing
 Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show'); // Product detail view
 
@@ -97,11 +94,10 @@ Route::post('/stripe/pay', [StripeController::class, 'checkout'])->name('stripep
 Route::get('/payment/success', function () {
     return view('customers.success');})->name('customers.success');
 
-// Gift Card route (view)
+
 Route::get('/giftcard', function () {
     return view('customers.giftcard');})->name('customers.giftcard');
 
-// Add gift card to cart
 Route::post('/giftcard/add-to-cart', [CartController::class, 'addGiftCard'])->name('giftcard.addtocart');
 
 Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');

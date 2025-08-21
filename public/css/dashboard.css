@@ -1,13 +1,25 @@
+/* General Styles */
 body {
     font-family: 'Inter', sans-serif;
     background-color: #1f1f1f;
     color: #fff;
+    margin: 0;
+    padding: 0;
 }
 
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Dashboard Container */
 .dashboard-container {
-    margin: 5px 30px;
+    margin: 20px auto;
+    max-width: 1500px;
+    padding: 0 15px;
 }
 
+/* Grid for Cards */
 .grid-4 {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -17,110 +29,114 @@ body {
 
 .card {
     background-color: #0f0f0f;
-    padding: 14px;
-    box-shadow: 0 0 5px #474747;
-}
-.card1 {
+    padding: 20px;
+    box-shadow: 0 0 10px #474747;
+    border-radius: 10px;
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
 }
 
 .card h2 {
-    font-size: 20px;
-    margin-bottom: 5px;
+    font-size: 22px;
+    margin: 10px 0 0 0;
+    color: #fff;
 }
 
 .card p {
     color: #aaa;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: bold;
 }
 
-.section-title {
-    font-size: 20px;
-    margin-bottom: 15px;
-    color: #ccc;
-}
-
+/* Charts Section */
 .charts {
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 20px;
 }
 
-.chart-box, .table-box {
+.chart-box {
     background-color: #0f0f0f;
     padding: 20px;
-    box-shadow: 0 0 5px #474747;
+    box-shadow: 0 0 10px #474747;
+    border-radius: 10px;
 }
 
+.section-title {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #ccc;
+    text-align: left;
+}
+
+/* Canvas */
 canvas {
     width: 100% !important;
     height: 250px !important;
 }
+
+/* Room info or small items (if needed) */
 .room {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin: 0;
-        margin-bottom: 20px;
-        color: #7C7C7C;
-        margin-right: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    color: #7C7C7C;
+}
+
+.room i {
+    font-size: 16px;
+    margin-right: 10px;
+    color: #7C7C7C;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    .charts {
+        grid-template-columns: 1fr;
     }
+}
 
-    h2 {
-        font-size: 16px;
-        margin-top: 10px;
+@media (max-width: 768px) {
+    .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
     }
-
-    .room i {
-        color: #7C7C7C;
-        font-size: 16px;
-        margin-right: 10px;
-        margin-left: 10px;
+    canvas {
+        height: 300px !important;
     }
-
-@media (min-width: 768px) {
-.grid-4 {
-    grid-template-columns: repeat(2, 1fr);
 }
 
-.charts {
-    grid-template-columns: repeat(2, 1fr);
+@media (max-width: 480px) {
+    .grid-4 {
+        grid-template-columns: 1fr;
+    }
+    .charts {
+        grid-template-columns: 1fr;
+    }
+    canvas {
+        height: 300px !important;
+        width: 100% !important;
+    }
 }
 
-canvas {
-    height: 300px !important;
-}
-}
-
-@media (min-width: 1024px) {
-.grid-4 {
-    grid-template-columns: repeat(4, 1fr);
+/* Optional: hover effect on cards */
+.card:hover {
+    transform: translateY(-5px);
+    transition: transform 0.2s ease-in-out;
 }
 
-.charts {
-    grid-template-columns: 2fr 1fr;
+/* Scrollbar style (optional) */
+::-webkit-scrollbar {
+    width: 8px;
 }
 
-canvas {
-    height: 250px !important;
-}
-}
-
-@media (max-width: 390px){
-.grid-4 {
-    grid-template-columns: repeat(1fr);
+::-webkit-scrollbar-thumb {
+    background: #736024;
+    border-radius: 10px;
 }
 
-.charts {
-    grid-template-columns: repeat(1fr);
-}
-canvas{
-    height: 300px !important;
-    width: 90% !important;
-}
-
+::-webkit-scrollbar-track {
+    background: #1f1f1f;
 }
