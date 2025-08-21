@@ -78,6 +78,10 @@ class EmployeeController extends Controller
 
     public function update(Request $request, Employee $employee)
     {
+        // Combine DOB
+        $dob = $request->dob_year . '-' . $request->dob_month . '-' . $request->dob_day;
+        $request->merge(['date_of_birth' => $dob]);
+    
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'position' => 'required|string|max:255',
@@ -99,7 +103,7 @@ class EmployeeController extends Controller
     
         return redirect()->route('employees.index')->with('success', 'Employee updated!');
     }
-            /**
+                /**
      * Remove the specified resource from storage.
      */
     public function destroy(Employee $employee)

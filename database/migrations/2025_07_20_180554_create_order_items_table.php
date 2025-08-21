@@ -20,7 +20,8 @@ return new class extends Migration
             $table->integer('quantity');
             $table->string('image')->nullable();
             $table->timestamps();
-        });    }
+        });    
+    }
 
     /**
      * Reverse the migrations.

@@ -16,6 +16,12 @@
     color: #eee;
     font-size: 14px;
   }
+  .navbar a.active {
+    color: #f5c012;
+    font-weight: bold;
+    border-bottom: 2px solid #f5c012;
+}
+
 </style>
 
 <body>
@@ -32,7 +38,7 @@
           <a href="{{ route('customers.index') }}" style="text-decoration: none; cursor: pointer;">
             <h1>SHWE LUCK SAN</h1>
           </a>
-          <p>Gold & Jewelry</p>
+          <p>Gold & Jewellery</p>
         </div>
       </div>
       <div class="icons">
@@ -44,16 +50,15 @@
       <a href="{{ route('register.form') }}"><i class="fa-regular fa-user"></i></a>
     @endauth
 
-        <i class="fa-solid fa-magnifying-glass"></i>
         <a href="{{ route('cart.index') }}"><i class="fa-solid fa-bag-shopping"></i></a>
       </div>
     </header>
 
     <nav class="navbar">
-      <a href="{{ route('customers.index') }}">HOMEPAGE</a>
-      <a href="{{ route('customers.giftcard') }}">GIFT GUIDE</a>
-      <a href="{{ route('customers.shop') }}">SHOP BY COLLECTION</a>
-      <a href="{{ route('contact') }}">CONTACT US</a>
+      <a href="{{ route('customers.index') }}" class="{{ request()->routeIs('customers.index') ? 'active' : '' }}">HOMEPAGE</a>
+      <a href="{{ route('customers.giftcard') }}" class="{{ request()->routeIs('customers.giftcard') ? 'active' : '' }}">GIFT GUIDE</a>
+      <a href="{{ route('customers.shop') }}" class="{{ request()->routeIs('customers.shop') ? 'active' : '' }}">SHOP BY COLLECTION</a>
+      <a href="{{ route('contact') }}" class="{{ request()->routeIs('contact') ? 'active' : '' }}">CONTACT US</a>
     </nav>
   </div>
   @yield('content')

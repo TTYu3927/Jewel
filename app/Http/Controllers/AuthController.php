@@ -55,7 +55,7 @@ class AuthController extends Controller
                 $user = Auth::user();
         
                 if ($user->usertype === 'admin') {
-                    return redirect()->intended(route('admin.dashboard'))->with('success', 'Welcome Admin');
+                    return redirect()->intended(route('dashboardchart'))->with('success', 'Welcome Admin');
                 }
         
                 Auth::logout(); // not admin, force logout
@@ -110,7 +110,7 @@ public function customerLogout(Request $request)
 // Admin logout
 public function adminLogout(Request $request)
 {
-    Auth::logout(); // Same logout, but redirect to admin login
+    Auth::logout();
 
     $request->session()->invalidate();
     $request->session()->regenerateToken();

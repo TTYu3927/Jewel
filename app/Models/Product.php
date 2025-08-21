@@ -34,4 +34,8 @@ class Product extends Model
     }
     public $timestamps = true;
 
+    public function orderItems()
+    {
+         return $this->hasMany(OrderItem::class, 'product_code', 'product_code'); }
+
 }

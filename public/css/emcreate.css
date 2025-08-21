@@ -1,0 +1,150 @@
+form {
+    display: flex;
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #181818;
+    gap: 65px;
+    
+}
+.formleft,
+.formright {
+    flex: 1;
+    padding: 30px;
+    background-color: #181818;
+    border-radius: 5px;
+}
+.formright{
+    margin-top: 90px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #dfdeda;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #7C7C7C;
+    border-radius: 4px;
+    background-color: transparent;
+    color: #dfdeda;
+    font-size: 14px;
+}
+.position{
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #7C7C7C;
+    border-radius: 4px;
+    background-color: transparent;
+    color: #dfdeda;
+    font-size: 14px;
+
+}
+.dob {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    color: #dfdeda;
+    font-size: 12px;
+    
+
+  }
+  
+  .dob select {
+    flex: 1;
+    color: #dfdeda;
+    background-color: transparent;
+    border: 1px solid #7C7C7C;
+    padding: 8px;
+  }
+
+
+button {
+    background-color: #541c1c;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 11px;
+}
+
+button:hover {
+    background-color:#6a2525;
+}
+.cxnl a {
+    color: #dfdeda;
+    text-decoration: none; 
+}
+.cxnl{
+    background-color: #7C7C7C;
+    font-size: 11px;
+}
+.img {
+    object-fit: cover;
+}
+.img + label {
+    display: block;
+    cursor: pointer;
+    color: #dfdeda;
+    background-color: #541c1c;
+    padding: 7px;
+    font-size: 12px;
+    width: calc(100% - 60%);
+    margin-top: 10px;
+    text-align: center;
+}
+.room{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    margin-bottom: 20px;
+    color: #7C7C7C;
+    margin-right: 30px;
+}
+h2{
+    font-size: 16px;
+    margin-top: 10px;  
+}
+.room a {
+    color: #7C7C7C;
+    text-decoration: none;
+}
+.room i {
+    color: #7C7C7C;
+    font-size: 16px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+
+@media screen and (max-width: 768px) {
+    form {
+        flex-direction: column;
+        padding: 10px;
+    }
+    .formleft, .formright {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .formright {
+        margin-left: 0;
+    }
+    .room {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+}

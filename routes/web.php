@@ -1,9 +1,11 @@
 <?php
 
-use App\Http\Controllers\Admin\DashboardChartController;
+use App\Http\Controllers\AdminForgotPasswordController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\StripeController;
@@ -19,12 +21,11 @@ Route::get('/admin/logout', [AuthController::class, 'adminLogout'])->name('admin
 
 /** Admin panel routes */
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/admin/dashboard', function () {
-        return view('layouts.index');
-})->name('admin.dashboard');
+    Route::get('/admin/dashboard-chart', function () {
+        return view('admin.dashboard');
+})->name('dashboardchart');
 
-Route::get('/admin/dashboard-chart', [DashboardChartController::class, 'index'])->name('dashboardchart');
-
+Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
     Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
     Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
@@ -36,7 +37,9 @@ Route::get('/admin/dashboard-chart', [DashboardChartController::class, 'index'])
     Route::resource('products', ProductController::class)->except(['show']);
 
     Route::get('/admin/customers', [CustomerController::class, 'customerList'])->name('admin.customers');
+
     Route::get('/admin/orders', [OrderController::class, 'index'])->name('admin.order');
+    Route::post('/admin/orders/{id}/approve', [OrderController::class, 'approve'])->name('admin.order.approve');
 
     Route::resource('employees', EmployeeController::class)->except(['show']);
     Route::get('/employees', [EmployeeController::class, 'index'])->name('employees.index');
@@ -48,9 +51,13 @@ Route::get('/admin/dashboard-chart', [DashboardChartController::class, 'index'])
     Route::get('/employees/{id}', [EmployeeController::class, 'show'])->name('employees.show');
 
 
+});
 
-
-
+Route::prefix('admin')->group(function () {
+    Route::get('/forgot-password', [AdminForgotPasswordController::class, 'showLinkRequestForm'])->name('admin.password.request');
+    Route::post('/forgot-password', [AdminForgotPasswordController::class, 'sendResetLinkEmail'])->name('admin.password.email');
+    Route::get('/reset-password/{token}', [AdminForgotPasswordController::class, 'showResetForm'])->name('admin.password.reset');
+    Route::post('/reset-password', [AdminForgotPasswordController::class, 'reset'])->name('admin.password.update');
 });
 
 /** Public shop & customer routes*/
@@ -63,6 +70,7 @@ Route::get('/customers/contact', [CustomerController::class, 'contact'])->name('
 Route::get('/contact', [CustomerController::class, 'contact'])->name('contact');
 Route::get('/shop', [ProductController::class, 'shop'])->name('customers.shop');
 
+Route::post('/checkout/confirm', [CartController::class, 'confirmOrder'])->name('checkout.confirm');
 
 
 /** Auth Routes (Customer)*/
@@ -96,4 +104,4 @@ Route::get('/giftcard', function () {
 // Add gift card to cart
 Route::post('/giftcard/add-to-cart', [CartController::class, 'addGiftCard'])->name('giftcard.addtocart');
 
-
+Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');

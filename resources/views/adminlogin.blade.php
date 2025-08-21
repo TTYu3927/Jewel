@@ -4,100 +4,11 @@
     <meta charset="UTF-8">
     <title>@yield('title', 'Shwe Luck San')</title>
     <link rel="icon" href="images/logoo.png" type="image">
-    <title>Document</title>
+    <link rel="stylesheet" href="{{ asset('css/adminlogin.css') }}">
+
+    <title>adminpanel</title>
     <style>
-        body {
-            background-color: #070707;
-            font-family: 'Inter', sans-serif;
-            color: #fff;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            display: flex;
-            height: 100vh;
-        }
-
-        .left-side {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .left-side img {
-            width: 100%;
-            height: 100vh;
-        }
-
-        .right-side {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .right-side .title h1{
-            color: #f5c012;
-            margin-top: 0;
-            font-size: 25px;
-            margin-bottom: 0;
-
-        }
-
-        .right-side .title p {
-            font-size: 12px;
-            color: #ccc;
-            text-align: center;
-            margin-top: 0px;
-            margin-bottom: 20px;
-        }
-
-        .form {
-            width: 100%;
-            max-width: 400px;
-            background-color: #1a1a1a;
-            padding: 40px;
-            
-        }
-
-        .form h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .form label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .form input[type="email"],
-        .form input[type="password"] {
-            width: calc(100% - 20px);
-            padding: 10px;
-            margin-bottom: 15px;
-            border-radius: 4px;
-            border: 1px solid #444;
-            background-color: transparent;
-            color: #fff;
-        }
-
-        .form button {
-            width: 100%;
-            padding: 10px;
-            background-color: #541c1c;
-            color: white;
-            border-radius: 4px;
-            border: none;
-            cursor: pointer;
-        }
-
-        .form button:hover {
-            background-color: #541c1c;
-        }
-    </style>
+</style>
 </head>
 <body>
     <div class="container">
@@ -121,7 +32,7 @@
                     <label for="password">Password:</label>
                     <input type="password" name="password" id="password" required placeholder="Enter your password">
                     <div class="forgot-password">
-                        <a href="#" style="color: #444; text-decoration: none;">Forgot Password?</a>
+                        <a href="{{ route('admin.password.request') }}">Forgot Password?</a>
                     </div>
 
                     <button type="submit">Login</button>

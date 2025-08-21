@@ -15,7 +15,7 @@
         <p>Metal: {{ $product->karats }}</p>
 
 
-            <form action="{{ route('cart.add', $product->id) }}" method="POST">
+            <form action="{{ route('cart.add', $product->id) }}" method="POST" class="qtybtn">
                 @csrf
                 <div class="quantity">
             <label for="qty">Qty:</label>
@@ -25,13 +25,14 @@
             </form>
             
         <hr class="separator1">
+        <div class="description-toggle">
         <p class="dcp">DESCRIPTION: {{ $product->description}}</p>
         <hr class="separator2">
         <p>SHIPPING & RETURNS:  <br>
         Orders are processed within 1-3 business days. <br>
         In-store pick-up is available for Yangon and Mandalay. <br>
         Please contact us at shwelucksan@gmail.com  </p>
-
+</div>
     </div>
 </div>
 <h3>Discover More</h3>

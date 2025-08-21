@@ -12,12 +12,14 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $products = Product::with('category')->paginate(3);
-        return view('products.index', compact('products'));
+    
+        $categories = Category::all();
+    
+        return view('products.index', compact('products', 'categories'));
     }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -106,14 +108,47 @@ class ProductController extends Controller
         return view('customers.detail', compact('product', 'related'));
     }
         
-    public function shop()
+    public function shop(Request $request)
     {
-        $products = Product::latest()->get();
-        
-        return view('customers.shop', compact('products'));
+        $query = Product::query();
+    
+        // Filter by category
+        if ($request->filled('category') && $request->category != 'all') {
+            if ($request->category == 'new_arrivals') {
+                $query->latest(); // sort by newest first
+            } elseif ($request->category == 'best_sellers') {
+                $query->orderBy('sale_price', 'desc'); // example: best selling by price
+            } else {
+                $query->where('category_id', $request->category);
+            }
+        }
+    
+        // Sort by selection
+        if ($request->filled('sort')) {
+            switch ($request->sort) {
+                case 'price_asc':
+                    $query->orderBy('sale_price', 'asc');
+                    break;
+                case 'price_desc':
+                    $query->orderBy('sale_price', 'desc');
+                    break;
+                case 'name_asc':
+                    $query->orderBy('product_name', 'asc');
+                    break;
+                case 'name_desc':
+                    $query->orderBy('product_name', 'desc');
+                    break;
+            }
+        } else {
+            $query->latest();
+        }
+    
+        $products = $query->get();
+        $categories = Category::all();
+    
+        return view('customers.shop', compact('products', 'categories'));
     }
     
-
 
     /**
      * Remove the specified resource from storage.

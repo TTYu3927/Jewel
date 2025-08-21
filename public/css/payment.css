@@ -5,6 +5,19 @@ body {
     padding: 0;
     color: #fff;
 }
+.site-footer {
+background: url('{{ asset("images/footer.jpg") }}') no-repeat center center;
+background-size: cover;
+margin-top: 60px;
+color: #eee;
+font-size: 14px;
+}
+.navbar a.active {
+color: #f5c012;
+font-weight: bold;
+border-bottom: 2px solid #f5c012;
+}
+
 
 .Payment {
     max-width: 1000px;
@@ -58,15 +71,31 @@ input::placeholder {
     color: #aaa;
 }
 
-#card-element {
-    background-color: #aaa;
-    color: white;
-    padding: 12px;
-    border: 1px solid #444;
-    border-radius: 4px;
-    font-size: 14px;
+.card-field {
+    margin-bottom: 15px;
     width: 85%;
-    margin-bottom: 10px;
+}
+
+.card-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    width: 90%;
+}
+
+#card-number, #card-exp, #card-cvc {
+    padding: 12px;
+    background-color: transparent;
+    border: 1px solid #444;
+    font-size: 14px;
+    color: #fff;
+    height: 20px;
+    
+}
+
+.StripeElement {
+    background-color: transparent;
+    color: #fff;
 }
 
 #card-errors {
@@ -85,6 +114,7 @@ button {
     cursor: pointer;
     font-size: 14px;
     margin-top: 10px;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
@@ -127,4 +157,87 @@ button:hover {
     border: 1px solid #444;
     background-color: #141414;
     border-radius: 6px;
+}
+
+.alert {
+    margin-top: 20px;
+    padding: 12px;
+    background-color: #ff5252;
+    color: white;
+    font-size: 14px;
+    border-radius: 6px;
+}
+@media screen and (max-width: 1024px) {
+.Payment {
+    flex-direction: column;
+    padding: 55px;
+}
+
+.left, 
+.right {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.right {
+    order: -1; 
+}
+
+.card-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+}
+}
+
+@media screen and (max-width: 768px) {
+.Payment {
+    flex-direction: column;
+}
+
+.left, 
+.right {
+    width: 100%;
+}
+
+.right {
+    order: -1;
+    margin-bottom: 20px;
+}
+
+.card-info {
+    flex-direction: column;
+}
+
+button {
+    width: 90%;
+}
+}
+
+@media screen and (max-width: 450px) {
+.Payment {
+    flex-direction: column;
+}
+
+.left, 
+.right {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.right {
+    order: -1;
+}
+
+.card-info {
+    flex-direction: column;
+    gap: 8px;
+}
+
+button {
+    width: 100%;
+    font-size: 14px;
+}
+
 }

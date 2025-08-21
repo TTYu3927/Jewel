@@ -66,8 +66,6 @@ public function viewCart()
     return view('cart', compact('cartItems'));
 }
 
-
-
     
     public function index()
     {
@@ -102,6 +100,21 @@ public function viewCart()
     public function checkout()
     {
         $cart = session()->get('cart', []);
+
+        // Validate stock before checkout
+    foreach ($cart as $id => $item) {
+        // Skip gift cards
+        if (isset($item['id']) && str_starts_with($item['id'], 'giftcard_')) {
+            continue;
+        }
+
+        $product = Product::find($id);
+        if (!$product || $item['quantity'] > $product->stock_qty) {
+            return redirect()->route('cart.index')
+                             ->with('error', "Not enough stock for {$item['product_name']}");
+        }
+    }
+    
         $totalAmount = array_sum(array_map(function($item) {
             return (isset($item['price']) ? $item['price'] : 0) * (isset($item['quantity']) ? $item['quantity'] : 1);
         }, $cart));

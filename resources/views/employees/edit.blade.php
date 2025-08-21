@@ -1,161 +1,9 @@
 @extends('layouts.index')
 @section('title', 'Create Employee')
 @section('content')
+<link rel="stylesheet" href="{{ asset('css/emedit.css') }}">
 
 <style>
-    form {
-    display: flex;
-    max-width: 900px;
-    margin: auto;
-    padding: 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #181818;
-    gap: 65px;
-    
-}
-.formleft,
-.formright {
-    flex: 1;
-    padding: 30px;
-    background-color: #181818;
-    border-radius: 5px;
-}
-.formright{
-    margin-top: 130px;
-}
-
-label {
-    display: block;
-    margin-bottom: 8px;
-    color: #dfdeda;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="password"],
-textarea {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #7C7C7C;
-    border-radius: 4px;
-    background-color: transparent;
-    color: #dfdeda;
-    font-size: 14px;
-}
-.position{
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #7C7C7C;
-    border-radius: 4px;
-    background-color: transparent;
-    color: #dfdeda;
-    font-size: 14px;
-
-}
-.dob {
-    display: flex;
-    gap: 10px;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    color: #dfdeda;
-    font-size: 12px;
-    
-
-  }
-  
-  .dob select {
-    flex: 1;
-    color: #dfdeda;
-    background-color: transparent;
-    border: 1px solid #7C7C7C;
-    padding: 8px;
-  }
-
-
-button {
-    background-color: #541c1c;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    cursor: pointer;
-    font-size: 11px;
-}
-
-button:hover {
-    background-color:#6a2525;
-}
-.cxnl a {
-    color: #dfdeda;
-    text-decoration: none; 
-}
-.cxnl{
-    background-color: #7C7C7C;
-    font-size: 11px;
-}
-.img {
-    width: 100px;
-    height: 100px;
-    display: block;
-    object-fit: cover;
-}
-.img + label {
-    display: block;
-    cursor: pointer;
-    color: #dfdeda;
-    background-color: #541c1c;
-    padding: 7px;
-    font-size: 12px;
-    width: calc(100% - 60%);
-    margin-top: 10px;
-    text-align: center;
-}
-.room{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 0;
-    margin-bottom: 20px;
-    color: #7C7C7C;
-    margin-right: 30px;
-}
-h2{
-    font-size: 16px;
-    margin-top: 10px;  
-}
-.room a {
-    color: #7C7C7C;
-    text-decoration: none;
-}
-.room i {
-    color: #7C7C7C;
-    font-size: 16px;
-    margin-right: 10px;
-    margin-top: 10px;
-    margin-left: 10px;
-}
-
-
-@media screen and (max-width: 768px) {
-    form {
-        flex-direction: column;
-        padding: 10px;
-    }
-    .formleft, .formright {
-        width: 100%;
-        margin-bottom: 20px;
-    }
-    .formright {
-        margin-left: 0;
-    }
-    .room {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-}
 
 </style>
 <div class="room">
@@ -250,7 +98,7 @@ h2{
     <label>Address:</label>
     <textarea name="address" placeholder="Enter Address">{{ old('address', $employee->address) }}</textarea>
 
-    <button type="submit" class="cxnl"><a href="{{ route('employees.index') }}">CANCEL</a></button>
+    <a href="{{ route('employees.index') }}" class="cxnl" style="padding: 10px 15px; background-color: #7C7C7C; color: #dfdeda; text-decoration: none; border-radius: 5px; font-size: 11px;">CANCEL</a>
     <button type="submit">UPDATE</button>
 
     </div>
@@ -264,7 +112,7 @@ h2{
             @csrf
             @method('DELETE')
             <button type="button" onclick="closeDeleteModal()" style="margin-left:10px; padding:10px 20px; border:none; background:#7C7C7C; color:white; border-radius:5px;">Cancel</button>
-            <button type="submit" style="background-color:#541c1c; color:white; padding:10px 20px; border:none; border-radius:5px;">Delete</button>
+            <button type="submit" style="background-color: #541c1c; color:white; padding:10px 20px; border:none; border-radius:5px;">Delete</button>
         </form>
     </div>
 </div>
@@ -304,12 +152,10 @@ const deleteModal = document.getElementById('deleteModal');
         deleteModal.style.display = 'none';
     }
 
-    // Attach handler to all delete links
     document.querySelectorAll('.delete-link').forEach(link => {
         link.addEventListener('click', openDeleteModal);
     });
 
-    // Optional: close modal when clicking outside
     window.onclick = function(event) {
         if (event.target === deleteModal) {
             closeDeleteModal();
