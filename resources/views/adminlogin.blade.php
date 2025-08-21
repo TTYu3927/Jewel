@@ -32,7 +32,7 @@
                     <label for="password">Password:</label>
                     <input type="password" name="password" id="password" required placeholder="Enter your password">
                     <div class="forgot-password">
-                        <a href="{{ route('admin.password.request') }}">Forgot Password?</a>
+                        <a href="{{ route('customer.password.request') }}">Forgot Password?</a>
                     </div>
 
                     <button type="submit">Login</button>

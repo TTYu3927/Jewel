@@ -13,6 +13,8 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\VisitorController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CustomerForgotPasswordController;
+
 
 Route::get('/admin/login', [AuthController::class, 'showAdminLoginForm'])->name('admin.login.form');
 Route::post('/admin/login', [AuthController::class, 'adminLogin'])->name('adminlogin');
@@ -51,12 +53,7 @@ Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('das
 
 });
 
-Route::prefix('admin')->group(function () {
-    Route::get('/forgot-password', [AdminForgotPasswordController::class, 'showLinkRequestForm'])->name('admin.password.request');
-    Route::post('/forgot-password', [AdminForgotPasswordController::class, 'sendResetLinkEmail'])->name('admin.password.email');
-    Route::get('/reset-password/{token}', [AdminForgotPasswordController::class, 'showResetForm'])->name('admin.password.reset');
-    Route::post('/reset-password', [AdminForgotPasswordController::class, 'reset'])->name('admin.password.update');
-});
+
 
 
 Route::get('/', [CustomerController::class, 'index'])->name('customers.index');
@@ -69,6 +66,18 @@ Route::get('/contact', [CustomerController::class, 'contact'])->name('contact');
 Route::get('/shop', [ProductController::class, 'shop'])->name('customers.shop');
 
 Route::post('/checkout/confirm', [CartController::class, 'confirmOrder'])->name('checkout.confirm');
+
+Route::get('/forgot-password', [CustomerForgotPasswordController::class, 'showLinkRequestForm'])
+    ->name('customer.password.request');
+
+Route::post('/forgot-password', [CustomerForgotPasswordController::class, 'sendResetLinkEmail'])
+    ->name('customer.password.email');
+
+Route::get('/reset-password/{token}', [CustomerForgotPasswordController::class, 'showResetForm'])
+    ->name('customer.password.reset');
+
+Route::post('/reset-password', [CustomerForgotPasswordController::class, 'reset'])
+    ->name('customer.password.update');
 
 
 

@@ -1,8 +1,7 @@
 @extends('layouts.ctmindex')
 @section('content')
 <style>
-    /* adminforgot.css */
-
+/* forgot-password.css for customers */
 .forgot-password-form {
     width: 400px;
     margin: 80px auto;
@@ -71,15 +70,15 @@
     margin-bottom: 15px;
     font-size: 14px;
 }
-
 </style>
+
 <div class="forgot-password-form">
     <h2>Forgot Password</h2>
     @if(session('status'))
         <div class="success-message">{{ session('status') }}</div>
     @endif
 
-    <form method="POST" action="{{ route('admin.password.email') }}">
+    <form method="POST" action="{{ route('customer.password.email') }}">
         @csrf
         <label>Email:</label>
         <input type="email" name="email" required placeholder="Enter your email">
